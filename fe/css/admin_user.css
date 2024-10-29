@@ -1,0 +1,15 @@
+body{
+    display:flex;
+}
+
+.columns{
+    width:15%;
+    background-color:#31473A;
+    height:100vh;
+    object-fit:cover;
+    top:0;
+    left:0;
+    position:absolute;
+    color:#edf4f2;
+}
+

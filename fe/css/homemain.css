@@ -26,6 +26,69 @@ body{
     height:100vh;
 }
 
+.introdution{
+    display:flex;
+    width:100%;
+}
+
+.pic-sec2{
+    width:60vw;
+    height:65%;
+    left:0;
+    transform:translateY(30%);
+    object-fit:cover;
+    position:absolute;
+}
+
+.overlay-sec2{
+    background-color: #edf4f2;
+    z-index: -3; 
+    width: 100vw;
+    height:200vh;
+    top:0;
+    object-fit:cover;
+    left:0;
+    position:absolute;
+}
+
+.left-sec2{
+    width:70%;
+}
+
+.right-sec2{
+    text-align:center;
+    color:black;
+    right:0;
+    margin-top:120px;
+}
+
+.logo{
+    width:100px;
+    
+}   
+
+.title-sec2{
+    margin-top:20px;
+    font-size:40px;
+    color:rgb(41, 81, 53);
+    text-align:center;
+}
+
+hr{
+    width:100px;
+    border:1px solid rgb(41, 81, 53);
+}
+
+.bio-sec2{
+    margin-top:30px;
+    width:320px;
+    text-align:center;
+    font-size:12px;
+    color:grey;
+    font-weight:600;
+    letter-spacing: 1px;
+}
+
 .taskbar{
     display: flex;
     left:0;
@@ -76,6 +139,7 @@ body{
     padding :10px 20px 10px 20px;
     border-bottom: 2px solid transparent;
     transition: border-bottom-color 0,3s ease;
+    text-decoration:none;
 }
 
 .text-dropdown:hover{

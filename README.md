@@ -70,4 +70,4 @@ Quản lý vệ sinh môi trường nông thôn
 6.9. Quản lý danh mục cơ sở chế biến sản phẩm chăn nuôi
 
 //Cach tai thu vien 
-pip install -r .\requirement.txt
+pip install -r .\requirements.txt

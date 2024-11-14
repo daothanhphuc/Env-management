@@ -6,26 +6,83 @@ from pydantic import BaseModel
 from db.database import engine
 from db import models, admin_permission, guest_permission
 from router import register_user, delete_user, statistic_user, search_accounts, add, create_group
+from pathlib import Path
 
-
-class MyItem(BaseModel):
-    imgbase64: str
 
 app = FastAPI()
 
 # Mount static files (CSS, JS, images) từ thư mục 'fe'
-app.mount("/static", StaticFiles(directory="fe"), name="static") #"/static" là đường dẫn trang web cho các file CSS
-
-# Chỉ định thư mục 'fe' chứa các file HTML
-templates = Jinja2Templates(directory="fe")
-#Router cho các trang web
-@app.get("/", response_class=HTMLResponse) #"/" là đường dẫn trang web
-async def get_home(request: Request):
-    return templates.TemplateResponse("home.html", {"request": request})
+app.mount("/static", StaticFiles(directory="static"), name="static") #"/static" là đường dẫn trang web cho các file CSS
 
 
+# Route cho trang index
+@app.get("/", response_class=HTMLResponse)
+async def read_index():
+    file_path = Path("static/index.html")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
+
+# Route rút gọn cho trang home
+@app.get("/home", response_class=HTMLResponse)
+async def read_home():
+    file_path = Path("static/html/homemain.html")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
+
+# Route rút gọn cho trang login
+@app.get("/login", response_class=HTMLResponse)
+async def read_login():
+    file_path = Path("static/html/login.html")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
+
+# Route rút gọn cho trang accountinfo
+@app.get("/accountinfo", response_class=HTMLResponse)
+async def read_accountinfo():
+    file_path = Path("static/html/accountinfo")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
+
+# Route rút gọn cho trang admin_user
+@app.get("/admin_user", response_class=HTMLResponse)
+async def read_admin_user():
+    file_path = Path("static/html/admin_user.html")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
+
+# Route rút gọn cho trang forgotpass
+@app.get("/login/forgotpass", response_class=HTMLResponse)
+async def read_forgotpass():
+    file_path = Path("static/html/forgotpass.html")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
+
+# Route rút gọn cho trang test
+@app.get("/test", response_class=HTMLResponse)
+async def read_test():
+    file_path = Path("static/html/test.html")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
+
+# Route rút gọn cho trang test2
+@app.get("/test2", response_class=HTMLResponse)
+async def read_test2():
+    file_path = Path("static/html/test2.html")
+    if file_path.is_file():
+        return file_path.read_text(encoding='utf-8')
+    return HTMLResponse("<h1>File not found</h1>", status_code=404)
 
 
+
+
+# Add routers
 app.include_router(register_user.router)
 app.include_router(delete_user.router)
 app.include_router(statistic_user.router)

@@ -42,7 +42,7 @@ async def read_login():
 # Route rút gọn cho trang accountinfo
 @app.get("/accountinfo", response_class=HTMLResponse)
 async def read_accountinfo():
-    file_path = Path("static/html/accountinfo")
+    file_path = Path("static/html/accountinfo.html")
     if file_path.is_file():
         return file_path.read_text(encoding='utf-8')
     return HTMLResponse("<h1>File not found</h1>", status_code=404)

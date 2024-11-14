@@ -12,8 +12,8 @@ class dbUser(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     fullname = Column(String(255))
     username = Column(String(25), unique=True)
-    password = Column(String)
-    email = Column(String)
+    password = Column(String(25))
+    email = Column(String(25))
     role_id = Column(Integer, ForeignKey('roles.id'))   # khoa ngoai tham chieu toi cot id cua bang roles
     status = Column(Boolean)        # trang thai hoat dong
 
@@ -22,21 +22,21 @@ class dbRole(Base):
     __tablename__ = "roles"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(255), unique=True)
-    description = Column(String)        # mo ta quyen
+    description = Column(String(255))        # mo ta quyen
 
 # Phan quyen nguoi dung
 class dbPermission(Base):
     __tablename__ = "permissions"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     role_id = Column(Integer, ForeignKey('roles.id'))
-    permission_name = Column(String)        # ten quyen cu the
+    permission_name = Column(String(255))        # ten quyen cu the
 
 # Nhom nguoi dung
 class dbUserGroup(Base):
     __tablename__ = "user_groups"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    group_name = Column(String)
-    description = Column(String)        # mo ta nhom
+    group_name = Column(String(25))
+    description = Column(String(255))        # mo ta nhom
 
 # Thanh vien nhom
 class dbGroup_Member(Base):
@@ -51,7 +51,7 @@ class dbLoginHistory(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     login_time = Column(TIMESTAMP)      # thoi gian dang nhap
-    ip_address = Column(String)     # dia chi ip khi dang nhap
+    ip_address = Column(String(25))     # dia chi ip khi dang nhap
 
 
 ## Bang hanh chinh
@@ -59,15 +59,15 @@ class dbLoginHistory(Base):
 class dbHuyen(Base):
     __tablename__ = "huyen"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    name = Column(String)
-    code = Column(String)
+    name = Column(String(25))
+    code = Column(String(25))
 
 # Cap xa
 class dbXa(Base):
     __tablename__ = "xa"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    name = Column(String)
-    code = Column(String)
+    name = Column(String(25))
+    code = Column(String(25))
     huyen_id = Column(Integer, ForeignKey('huyen.id'))
 
 
@@ -77,7 +77,7 @@ class dbWaterFocus(Base):
     __tablename__ = "cong_trinh_nuoc_tap_trung"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(255))      # ten cong trinh
-    location = Column(String)       # dia diem
+    location = Column(String(50))       # dia diem
     xa_id = Column(Integer, ForeignKey('xa.id'))
     status = Column(Boolean)
     construction_year = Column(Integer)     # nam xay dung
@@ -89,7 +89,7 @@ class dbWaterRetail(Base):
     __tablename__ = "cong_trinh_nuoc_nho_le"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(255))      # ten cong trinh
-    location = Column(String)       # dia diem
+    location = Column(String(25))       # dia diem
     xa_id = Column(Integer, ForeignKey('xa.id'))
     status = Column(Boolean)
     construction_year = Column(Integer)     # nam xay dung
@@ -98,8 +98,8 @@ class dbWaterRetail(Base):
 class dbWaterReport(Base):
     __tablename__ = "water_report"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    title = Column(String)      # tieu de bao cao
-    report_file = Column(String)        # duong dan file bao cao
+    title = Column(String(25))      # tieu de bao cao
+    report_file = Column(String(25))        # duong dan file bao cao
     submit_date = Column(Date)      # nagy nop bao cao
 
 
@@ -117,8 +117,8 @@ class dbCompare(Base):
     __tablename__ = "report_compare"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     cong_trinh_id = Column(Integer, ForeignKey('cong_trinh_nuoc_tap_trung.id'))
-    time_period = Column(String)        # thoi gian so sanh (theo nam, quy)
-    compare_result = Column(String)     # ket qua so sanh
+    time_period = Column(String(25))        # thoi gian so sanh (theo nam, quy)
+    compare_result = Column(String(255))     # ket qua so sanh
 
 
 ## Bang chan nuoi
@@ -126,8 +126,8 @@ class dbCompare(Base):
 class dbFarm(Base):
     __tablename__ = "farms"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    name = Column(String)       # ten co so chan nuoi
-    owner = Column(String)      # ten chu so huu
+    name = Column(String(25))       # ten co so chan nuoi
+    owner = Column(String(25))      # ten chu so huu
     xa_id = Column(Integer, ForeignKey('xa.id'))
     register_date = Column(Date)        # ngay dang ky
 
@@ -136,21 +136,21 @@ class dbFarmStaff(Base):
     __tablename__ = "farm_staff"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     farm_id = Column(Integer, ForeignKey('farms.id'))
-    staff_name = Column(String)     # ten nhan vien
+    staff_name = Column(String(25))     # ten nhan vien
 
 # Dieu kien chan nuoi
 class dbCondition(Base):
     __tablename__ = "conditions"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     farm_id = Column(Integer, ForeignKey('farms.id'))
-    condition = Column(String)      # dieu kien chan nuoi
+    condition = Column(String(255))      # dieu kien chan nuoi
 
 # Giay chung nhan co so chan nuoi
 class dbCertificate(Base):
     __tablename__ = "certificate"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     farm_id = Column(Integer, ForeignKey('farms.id'))
-    certificate_num = Column(String)        # so giay chung nhan
+    certificate_num = Column(String(25))        # so giay chung nhan
     issue_date = Column(Date)       # ngay cap
 
 # Cơ sở chế biến sản phẩm chăn nuôi
@@ -158,15 +158,15 @@ class dbProcessing(Base):
     __tablename__ = "processing"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     farm_id = Column(Integer, ForeignKey('farms.id'))
-    processing_name = Column(String)        # ten co so che bien
+    processing_name = Column(String(25))        # ten co so che bien
     # processing_address = Column(String)     # dia chi co so
-    processing_product = Column(String)      
+    processing_product = Column(String(25))      
     processing_date = Column(Date)      # ngay cap giay phe
 
 ## Bang van ban phap luat
 class dbLegal(Base):
     __tablename__ = "legal_documents"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    title = Column(String)      # tieu de van ban
-    file = Column(String)       # duong dan file van ban
+    title = Column(String(25))      # tieu de van ban
+    file = Column(String(25))       # duong dan file van ban
     issue_date = Column(Date)       # ngay phat hanh

@@ -90,7 +90,7 @@ class dbWaterRetail(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(255))      # ten cong trinh
     location = Column(String(25))       # dia diem
-    xa_id = Column(Integer, ForeignKey('xa.id'))
+    xa_id = Column(Integer, ForeignKey('xa.id')) 
     status = Column(Boolean)
     construction_year = Column(Integer)     # nam xay dung
 

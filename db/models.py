@@ -12,7 +12,7 @@ class dbUser(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     fullname = Column(String(255))
     username = Column(String(25), unique=True)
-    password = Column(String(25))
+    password = Column(String(72))
     email = Column(String(25))
     role_id = Column(Integer, ForeignKey('roles.id'))   # khoa ngoai tham chieu toi cot id cua bang roles
     status = Column(Boolean)        # trang thai hoat dong

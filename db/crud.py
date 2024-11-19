@@ -9,12 +9,14 @@ def create_user(db: Session, request: UserBase, group_id: int = None, role_name:
     if not role:
         return {"error": "Role '{role_name}' not found"}
     new_user = dbUser(
-        fullname = request.fullname,
-        username = request.username,
-        email = request.email,
-        password = Hash.bcrypt(request.password),
-        role_id = role.id,
+        fullname=request.fullname,
+        username=request.username,
+        email=request.email,
+        password=Hash.bcrypt(request.password),
+        role_id=role.id,
+        status=True  # Mặc định người dùng hoạt động
     )
+
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
@@ -45,6 +47,7 @@ def delete_user(db: Session, user_id: int): # Delete user by user_id
     db.commit()
     db.refresh(user)
     return user
+
 # Create new group for dbUserGroup
 def create_group(db: Session, request: GroupBase):
     new_group = dbUserGroup(
@@ -55,6 +58,7 @@ def create_group(db: Session, request: GroupBase):
     db.commit()
     db.refresh(new_group)
     return new_group
+
 #Delete all group 
 def delete_all_group(db: Session):
     group = db.query(dbUserGroup).all()
@@ -62,17 +66,19 @@ def delete_all_group(db: Session):
         db.delete(i)
     db.commit()
     return group
+
 # Create new admin
-def create_admin(db: Session, request: UserBase, role_name: str = "admin"):
+def create_admin(db: Session, request: UserBase, role_name: str = "Admin"):
     role = db.query(dbRole).filter(dbRole.name == role_name).first()
     if not role:
         return {"error": "Role '{role_name}' not found"}
     new_user = dbUser(
-        fullname = request.fullname,
-        username = request.username,
-        email = request.email,
-        password = Hash.bcrypt(request.password),
-        role_id = role.id,
+        fullname=request.fullname,
+        username=request.username,
+        email=request.email,
+        password=Hash.bcrypt(request.password),
+        role_id=role.id,
+        status=True  # Mặc định người dùng hoạt động
     )
     db.add(new_user)
     db.commit()

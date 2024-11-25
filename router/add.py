@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends
 from db.schemas import UserBase, RoleDisplay, LFBase, LFDisplay, constructionBase, constructionDisplay
+from db.schemas import processingBase, processingDisplay
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db import guest_permission, admin_permission
-from db import livestock, construction
+from db import livestock, construction, product
 router = APIRouter(
     prefix="/add",
     tags=["add"]
@@ -31,4 +32,9 @@ def add_construction(request: constructionBase, db: Session=Depends(get_db)):
 @router.post("/add_waterRetail", response_model= constructionDisplay)
 def add_construction(request: constructionBase, db: Session=Depends(get_db)):
     return construction.new_water_retail(db, request)
+#Processing
+@router.post("/add_processing_facilities", response_model=processingDisplay)
+def add_processing_facilities(request: processingBase, db: Session=Depends(get_db)):
+    return product.new_facilities(db, request)
+
 # Legal document

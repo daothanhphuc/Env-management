@@ -78,11 +78,27 @@ class constructionBase(BaseModel):
     location: str
     status: str
     construction_year: str
+    chi_so_nuoc: str
     
 class constructionDisplay(BaseModel):
     name: str
     location: str
     status: str
     construction_year: str
+    chi_so_nuoc: str
+    class Config():
+        from_attributes = True
+
+# Processing base
+class processingBase(BaseModel):
+    processing_name: str
+    processing_address: str
+    processing_product: str
+    processing_date: str
+class processingDisplay(BaseModel):
+    processing_name: str
+    processing_address: str
+    processing_product: str
+    processing_date: str
     class Config():
         from_attributes = True

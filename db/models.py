@@ -81,7 +81,8 @@ class dbWaterFocus(Base):
     xa_id = Column(Integer, ForeignKey('xa.id'))
     status = Column(Boolean)
     construction_year = Column(Integer)     # nam xay dung
-    capacity = Column(Numeric(6, 2))      # cong suat (lay 10 so, 2 so sau dau phay)
+    # capacity = Column(Numeric(6, 2))      # cong suat (lay 10 so, 2 so sau dau phay)
+    chi_so_nuoc = Column(Numeric(6, 2))        # chi so nuoc
     # capacity = Column(DECIMAL)      # cong suat
 
 # Cong trinh nuoc sinh hoat nho le
@@ -93,6 +94,7 @@ class dbWaterRetail(Base):
     xa_id = Column(Integer, ForeignKey('xa.id')) 
     status = Column(Boolean)
     construction_year = Column(Integer)     # nam xay dung
+    chi_so_nuoc = Column(Numeric(6, 2))        # chi so nuoc
 
 # Bao cao quy hoach nuoc sach
 class dbWaterReport(Base):
@@ -159,7 +161,7 @@ class dbProcessing(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     farm_id = Column(Integer, ForeignKey('farms.id'))
     processing_name = Column(String(25))        # ten co so che bien
-    # processing_address = Column(String)     # dia chi co so
+    processing_address = Column(String)     # dia chi co so
     processing_product = Column(String(25))      
     processing_date = Column(Date)      # ngay cap giay phe
 

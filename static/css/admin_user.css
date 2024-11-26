@@ -42,7 +42,7 @@ body{
     text-decoration: none;
     color:#edf4f2;
     display:inline-block;
-    margin-top:60px;
+    margin-top:30px;
     transition: color 0.3s ease;
 }
 
@@ -182,7 +182,6 @@ th {
 }
 
 .modal {
-
     display: flex;
     display: none; 
     position: fixed; 

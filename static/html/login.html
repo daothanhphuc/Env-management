@@ -13,18 +13,18 @@
             <div class="title">
                 ĐĂNG NHẬP
             </div>
-            <div class="account-border">
-                <input class="account" placeholder="Tài khoản"></input></br>
+            <div class="account-border-login">
+                <input class="factor" placeholder="Tài khoản"></input></br>
             </div>
             <div class="password-border">
-                <input type="password" class="password" placeholder="Mật khẩu"></input>
+                <input type="password" class="factor" placeholder="Mật khẩu"></input>
             </div>
             <div class="text-login">
                 Đăng nhập với tư cách
             </div>
             <div class="login-button">
-                <button type="button" class="login-decorate" data-role="1">Quản trị viên</button>
-                <button type="button" class="login-decorate" data-role="2">Khách</button>
+                <button type="button" class="login-decorate" data-role="1">Admin</button>
+                <button type="button" class="login-decorate" data-role="2">Guest</button>
             </div>
             <script src="/static/js/login.js"></script>
 
@@ -51,23 +51,25 @@
             <div class="bio">
                 Bạn có thể đăng ký sử dụng trang web nếu bạn là người mới
             </div>
-            <div>
-                <input type="text" id="fullname" class="fullname" placeholder="Họ tên" required></input></br>
+            <div class="fullname-border">
+                <input type="text" id="fullname" class="factor" placeholder="Họ tên" required></input></br>
             </div>
-            <div class="account-border">
-                <input type="text" id="username" class="account" placeholder="Tài khoản" required></input></br>
+            <div class="account-border-signup">
+                <input type="text" id="username" class="factor" placeholder="Tài khoản" required></input></br>
             </div>
             <div class="password-border">
-                <input type="password" id="password" class="password" placeholder="Mật khẩu mới" required></input>
+                <input type="password" id="password" class="factor" placeholder="Mật khẩu mới" required></input>
             </div>
             <div class="passwordrp-border">
-                <input type="password" id="confirm-password" class="passwordrp" placeholder="Nhập lại mật khẩu" required></input>
+                <input type="password" id="confirm-password" class="factor" placeholder="Nhập lại mật khẩu" required></input>
             </div>
             <div class="phone-border">
-                <input type="email" id="email" class="email" placeholder="Email" required>
+                <input type="email" id="email" class="factor" placeholder="Email" required>
             </div>
-            <button type="button" id="user-register-btn">Register as User</button>
-            <button type="button" id="admin-register-btn">Register as Admin</button>
+            <div class="login-button">
+                <button type="button" id="user-register-btn" class="login-decorate">Register as User</button>
+                <button type="button" id="admin-register-btn" class="login-decorate">Register as Admin</button>
+            </div>
             <div class="form-toggle" onclick="toggleForms()">Đã có tài khoản? Đăng Nhập</div>
         
         <script src="/static/js/register.js"></script>

@@ -3,6 +3,14 @@ from typing import Optional, List
 # from sqlalchemy.sql.sqltypes import Integer, Date,TIMESTAMP, Boolean
 from datetime import datetime
 
+class HanhChinhBase (BaseModel):
+    name: str
+    code: str
+class HanhChinhDisplay (BaseModel):
+    name: str
+    code: str
+    class Config:
+        from_attributes = True
 
 class UserBase(BaseModel):
     fullname: str = Field(..., max_length=255)
@@ -100,5 +108,16 @@ class processingDisplay(BaseModel):
     processing_address: str
     processing_product: str
     processing_date: str
+    class Config():
+        from_attributes = True
+# Legal documents
+class documentBase(BaseModel):
+    title: str
+    file: str
+    issue_date: str
+class documentDisplay(BaseModel):
+    title: str
+    file: str
+    issue_date: str
     class Config():
         from_attributes = True

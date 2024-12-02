@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 from db.schemas import UserBase, RoleDisplay, LFBase, LFDisplay, constructionBase, constructionDisplay
-from db.schemas import processingBase, processingDisplay
+from db.schemas import processingBase, processingDisplay, documentBase, documentDisplay
 from sqlalchemy.orm import Session
 from db.database import get_db
 from db import guest_permission, admin_permission
-from db import livestock, construction, product
+from db import livestock, construction, product, huyen_xa_moi
 router = APIRouter(
     prefix="/update",
     tags=["update"]
@@ -62,3 +62,14 @@ def update_processing_product(id: int, new_product: str, db: Session=Depends(get
 @router.post("update_processing_date", response_model=processingDisplay)
 def update_processing_date(id: int, new_date: str, db: Session=Depends(get_db)):
     return product.update_processing_date(db, id, new_date)
+
+#Legal document
+@router.post("update_title", response_model=documentDisplay)
+def update_title(id: int, new_title: str, db: Session=Depends(get_db)):
+    return legal_docs.update_title(db, id, new_title)
+@router.post("update_file", response_model=documentDisplay)
+def update_file(id: int, new_file: str, db: Session=Depends(get_db)):
+    return legal_docs.update_file(db, id, new_file)
+@router.post("update_date", response_model=documentDisplay)
+def update_date(id: int, new_date: str, db: Session=Depends(get_db)):
+    return legal_docs.update_date(db, id, new_date)

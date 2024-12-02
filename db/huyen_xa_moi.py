@@ -5,8 +5,8 @@ from db.models import dbHuyen, dbXa
 # Create new huyen
 def huyen(db: Session, request: UserBase):
     huyen = dbHuyen(
-        huyen_name = request.huyen_name,
-        description = request.description
+        name = request.name,
+        code = request.code
     )
     db.add(huyen)
     db.commit()
@@ -14,8 +14,8 @@ def huyen(db: Session, request: UserBase):
     return huyen
 def xa (db: Session, request: UserBase):
     new_xa = dbXa(
-        xa_name = request.xa_name,
-        description = request.description
+        name = request.name,
+        code = request.code
     )
     db.add(new_xa)
     db.commit()

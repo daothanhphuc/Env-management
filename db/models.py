@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, TIMESTAMP, DECIMAL, Date, Numeric
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, TIMESTAMP, DECIMAL, Date, Numeric, DateTime
 from db.database import Base
+from datetime import datetime
 
 """
     Dinh nghia cac csdl
@@ -16,7 +17,12 @@ class dbUser(Base):
     email = Column(String(25))
     role_id = Column(Integer, ForeignKey('roles.id'))   # khoa ngoai tham chieu toi cot id cua bang roles
     status = Column(Boolean)        # trang thai hoat dong
-
+class dbUserActivity(Base):
+    __tablename__ = 'user_activity'
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    IsActive = Column(Boolean, default=False)
+    LastActivity = Column(DateTime, default= datetime.utcnow)
 # Dinh nghia cac quyen nguoi dung
 class dbRole(Base):
     __tablename__ = "roles"

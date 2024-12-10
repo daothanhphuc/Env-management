@@ -19,13 +19,15 @@ class UserBase(BaseModel):
     email: EmailStr
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class LoginRequest(BaseModel):
     username: str
     password: str
     role_id: int
-
+class LogoutRequest(BaseModel):
+    username: str
+    role_id: int
 
 class UserDisplay(BaseModel):
     fullname: str

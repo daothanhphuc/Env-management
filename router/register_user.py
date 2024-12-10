@@ -13,14 +13,14 @@ router = APIRouter(
 @router.post("/new_user")
 async def register_user(request: UserBase, db: Session = Depends(get_db)):
     try:
-        return crud.create_user(db, request, role_name="User")
+        return crud.create_user(db, request, group_id, role_name="User")
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.post("/new_admin")
 async def create_admin(request: UserBase, db: Session=Depends(get_db)):
     try:
-        return crud.create_user(db, request, role_name="Admin")
+        return crud.create_admin(db, request, role_name="Admin")
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     

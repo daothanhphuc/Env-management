@@ -3,6 +3,7 @@ from db.schemas import constructionBase, constructionDisplay
 from db.models import dbHuyen, dbXa, dbWaterFocus, dbWaterRetail, dbWaterReport, dbWaterStatistic
 
 def new_water_focus(db: Session, request: constructionBase):
+    # status_boolean = True if request.status == '1' else False
     new_focus = dbWaterFocus(
         name = request.name,
         location = request.location,
@@ -15,6 +16,8 @@ def new_water_focus(db: Session, request: constructionBase):
     db.refresh(new_focus)
     return new_focus
 def new_water_retail(db: Session, request: constructionBase):
+    # Chuyển status từ string sang boolean
+    # status_boolean = True if request.status == '1' else False
     new_retail = dbWaterRetail(
         name = request.name,
         location = request.location,
@@ -79,8 +82,13 @@ def update_retail_chi_so_nuoc(db: Session, new_chi_so_nuoc: str, id: int):
     db.refresh(retail)
     return retail
 # List construction base on xa_id
-def find_focus_construction (db: Session, xa_id: int):
-    return db.query(dbWaterFocus).filter(dbWaterFocus.xa_id == xa_id).all()
-def find_retail_construction (db: Session, xa_id: int):
-    return db.query(dbWaterRetail).filter(dbWaterRetail.xa_id == xa_id).all()
+def find_focus_construction (db: Session, id: int):
+    return db.query(dbWaterFocus).filter(dbWaterFocus.id == id).all()
+def find_retail_construction (db: Session, id: int):
+    return db.query(dbWaterRetail).filter(dbWaterRetail.id == id).all()
+# List all construction
+def get_all_retail(db: Session):
+    return db.query(dbWaterRetail).all()
+def get_all_focus(db: Session):
+    return db.query(dbWaterFocus).all()
 

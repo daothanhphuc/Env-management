@@ -1,4 +1,5 @@
 from sqlalchemy.orm.session import Session
+from sqlalchemy import join
 from db.schemas import LFBase, LFDisplay
 from db.models import dbFarm, dbFarmStaff, dbCondition
 
@@ -44,3 +45,19 @@ def delete_condition (db: Session, condition_id: int):
     db.query(dbCondition).filter(dbCondition.id == condition_id).delete()
     db.commit()
     return {"message": "Delete successfully"}
+# join dbFarm and dbCondition
+def get_farm_with_condition (db: Session):
+    results = db.query(
+        dbFarm.id.label("farm_id"),
+        dbFarm.name,
+        dbFarm.owner,
+        dbFarm.register_date,
+        dbCondition.condition
+    ).join(dbCondition, dbFarm.id == dbCondition.farm_id).all()
+    return results
+# List all farm
+def get_all_farm (db: Session):
+    return db.query(dbFarm).all()
+# Find farm by id
+def get_farm_by_id (db: Session, farm_id: int):
+    return db.query(dbFarm).filter(dbFarm.id == farm_id).first()

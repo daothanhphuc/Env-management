@@ -1,7 +1,8 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, validator
 from typing import Optional, List
+from decimal import Decimal
 # from sqlalchemy.sql.sqltypes import Integer, Date,TIMESTAMP, Boolean
-from datetime import datetime
+from datetime import date
 
 class HanhChinhBase (BaseModel):
     name: str
@@ -30,6 +31,7 @@ class LogoutRequest(BaseModel):
     role_id: int
 
 class UserDisplay(BaseModel):
+    id: int
     fullname: str
     username: str
     email: str
@@ -80,7 +82,22 @@ class LFDisplay(BaseModel):
     register_date: str
     class Config():
         from_attributes = True 
+# livestock farm join with condition display
+class ConditionDisplay(BaseModel):
+    farm_id: int
+    name: str
+    owner: str
+    register_date: Optional[str]  # Trả về dưới dạng chuỗi
+    condition: str
 
+    class Config:
+        from_attributes = True
+
+    @validator("register_date", pre=True, always=True)
+    def format_register_date(cls, value):
+        if value and isinstance(value, date):
+            return value.strftime("%d-%m-%Y")  # Định dạng thành chuỗi YYYY-MM-DD
+        return None
 
 # Construction base
 class constructionBase(BaseModel):
@@ -88,14 +105,15 @@ class constructionBase(BaseModel):
     location: str
     status: str
     construction_year: str
-    chi_so_nuoc: str
+    chi_so_nuoc: Decimal
     
 class constructionDisplay(BaseModel):
+    id: int
     name: str
     location: str
     status: str
     construction_year: str
-    chi_so_nuoc: str
+    chi_so_nuoc: Decimal
     class Config():
         from_attributes = True
 
@@ -121,5 +139,12 @@ class documentDisplay(BaseModel):
     title: str
     file: str
     issue_date: str
+    class Config():
+        from_attributes = True
+# History access display
+class statusDisplay(BaseModel):
+    user_id: int
+    IsActive: bool
+    LastActivity: str
     class Config():
         from_attributes = True

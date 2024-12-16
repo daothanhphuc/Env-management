@@ -85,11 +85,9 @@ class dbWaterFocus(Base):
     name = Column(String(255))      # ten cong trinh
     location = Column(String(50))       # dia diem
     xa_id = Column(Integer, ForeignKey('xa.id'))
-    status = Column(Boolean)
-    construction_year = Column(Integer)     # nam xay dung
-    # capacity = Column(Numeric(6, 2))      # cong suat (lay 10 so, 2 so sau dau phay)
-    chi_so_nuoc = Column(Numeric(6, 2))        # chi so nuoc
-    # capacity = Column(DECIMAL)      # cong suat
+    status = Column(String(50))
+    construction_year = Column(String(50))     # nam xay dung
+    chi_so_nuoc = Column(DECIMAL)       # chi so nuoc
 
 # Cong trinh nuoc sinh hoat nho le
 class dbWaterRetail(Base):
@@ -98,9 +96,9 @@ class dbWaterRetail(Base):
     name = Column(String(255))      # ten cong trinh
     location = Column(String(25))       # dia diem
     xa_id = Column(Integer, ForeignKey('xa.id')) 
-    status = Column(Boolean)
-    construction_year = Column(Integer)     # nam xay dung
-    chi_so_nuoc = Column(Numeric(6, 2))        # chi so nuoc
+    status = Column(String(50))
+    construction_year = Column(String(50))     # nam xay dung
+    chi_so_nuoc = Column(DECIMAL)      # chi so nuoc
 
 # Bao cao quy hoach nuoc sach
 class dbWaterReport(Base):

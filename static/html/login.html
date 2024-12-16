@@ -23,9 +23,14 @@
                 Đăng nhập với tư cách
             </div>
             <div class="login-button">
-                <button type="button" class="login-decorate" data-role="1">Admin</button>
+                <button type="button" class="login-decorate" data-role="1" onclick="redirectTo('/home')">Admin</button>
                 <button type="button" class="login-decorate" data-role="2">Guest</button>
             </div>
+            <script>
+                function redirectTo(url) {
+                    window.location.href = url;
+                }
+            </script>
             <script src="/static/js/login.js"></script>
 
             <div class="forgotpass-button">

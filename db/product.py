@@ -46,3 +46,7 @@ def update_date (db: Session, id: int, new_date: str):
     db.refresh(facilities)
     return facilities
 
+#List all facilities
+def list_facilities(db: Session):
+    return db.query(dbProcessing).all()
+

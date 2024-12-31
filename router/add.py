@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from db.schemas import UserBase, RoleDisplay, LFBase, LFDisplay, constructionBase, constructionDisplay
+from db.schemas import UserBase, RoleDisplay, LFBase, LFDisplay, constructionBase, constructionDisplay, Condition, ConditionShow
 from db.schemas import processingBase, processingDisplay, HanhChinhBase, HanhChinhDisplay, documentBase, documentDisplay
 from sqlalchemy.orm import Session
 from db.database import get_db
@@ -31,9 +31,9 @@ def add_LF(request: LFBase, db: Session=Depends(get_db)):
 @router.post("/add_staff_for_LF", response_model= LFDisplay)
 def add_staff(request: LFBase, farm_id: int, db: Session=Depends(get_db)):
     return livestock.add_staff(db, request, farm_id)
-@router.post("/add_condition_for_LF", response_model= LFDisplay)
-def add_condition(request: LFBase, farm_id: int, conditions: str, db: Session=Depends(get_db)):
-    return livestock.add_condition(db, request, farm_id, conditions)
+@router.post("/add_condition_for_LF", response_model= ConditionShow)
+def add_condition(request: Condition, farm_id: int, db: Session=Depends(get_db)):
+    return livestock.add_condition(db, request, farm_id)
 #Construction    
 @router.post("/add_waterFocus", response_model= constructionDisplay)
 def add_construction(request: constructionBase, db: Session=Depends(get_db)):

@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/admin_user.css">
+
     <script src="/static/js/admin_user.js"></script>
+    <script src="/static/js/list_retail_constructions.js"></script>
+    <script src="/static/js/list_focus_constructions.js"></script>
 </head>
 <body>
     <div class="columns">
@@ -28,18 +31,73 @@
     <main>
         <div class="information">
                 
+                <!-- <section id = "huyen" class = "content-section">
+                    <div class="topic">
+                        HUYỆN
+                    </div>
+                    <section class="search-filter">
+                        <input type="text" placeholder="Tìm kiếm huyện...">
+                        <button class="search-btn">Tìm kiếm</button>
+                        <button class="add-user-btn">Thêm huyện mới</button>
+                    </section>
+                    <section class="user-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên huyện</th>
+                                    <th>Mã vùng</th>
+                                </tr>
+                            </thead>    
+                            <tbody>
+                                dữ liệu sẽ được thêm vào nhờ file list_districts.js
+                            </tbody>                        
+                        </table>
+                        <script src="/static/js/list_huyen.js"></script>
+                    </section> 
+                </section> -->
+                
+                <!-- <section id = "xa" class = "content-section">
+                    <div class="topic">
+                        XÃ
+                    </div>
+                    <section class="search-filter">
+                        <input type="text" placeholder="Tìm kiếm xã...">
+                        <button class="search-btn">Tìm kiếm</button>
+                        <button class="add-user-btn">Thêm xã mới</button>
+                    </section>
+                    <section class="user-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên xã</th>
+                                    <th>Mã vùng</th>
+                                </tr>
+                            </thead>    
+                            <tbody>
+                                dữ liệu sẽ được thêm vào nhờ file list_communes.js
+                            </tbody>                        
+                        </table>
+                        <script src="/static/js/list_xa.js"></script>
+                    </section>
+                </section> -->
+
                 <section id="users" class="content-section">
                     <div class="topic">
                         THÔNG TIN CÁ NHÂN
                     </div>
                     <section class="search-filter">
                         <input type="text" placeholder="Tìm kiếm người dùng...">
+                        <!-- <input type="text" placeholder="Tìm kiếm người dùng..." id="searchInput"> -->
                         <select>
                             <option value="admin">Admin</option>
                             <option value="user">Người dùng</option>
                         </select>
                         <button class="search-btn">Tìm kiếm</button>
                         <button class="add-user-btn">Thêm người dùng mới</button>
+                        <!-- <button class="search-btn" id="searchButton">Tìm kiếm</button> -->
+                        <!-- <button class="all-users-btn" id="allUsersButton">Hiển thị tất cả</button>                 -->
                     </section>
                     <section class="user-list">
                         <table>
@@ -60,7 +118,7 @@
                         <script src="/static/js/list_users.js"></script>
                     </section>
                     
-                </section>
+                </section> 
 
                 <section id="group" class="content-section">
                     <div class="topic">
@@ -69,6 +127,7 @@
                     <section class="search-filter">
                         <input type="text" placeholder="Tìm kiếm nhóm...">
                         <button class="search-btn">Tìm kiếm</button>
+                        <button class="add-user-btn">Thêm nhóm mới</button>
                     </section>
                     <section class="user-list">
                         <table>
@@ -113,10 +172,9 @@
                                 <!-- Dữ liệu tự được generate  -->
                             </tbody>
                         </table>
-                        <script src="/static/js/list_retail_constructions.js"></script>
                     </section>
 
-                    <div id="addProjectModal" class="modal">
+                    <!-- <div id="addProjectModal" class="modal">
                         <div class="modal-content">
                             <span class="close" onclick="closeAddProjectModal()">&times;</span>
                             <div class="title-project">Thêm công trình nước mới</div>
@@ -149,7 +207,7 @@
                             </form>
 
                         </div>
-                    </div>   
+                    </div>    -->
                 </section>
         
                 <section id="projects" class="content-section">
@@ -178,13 +236,12 @@
                                 <!-- Dữ liệu tự được generate  -->
                             </tbody>
                         </table>
-                        <script src="/static/js/list_focus_constructions.js"></script>
                     </section>
-                    <div id="addProjectModal" class="modal">
+                    <!-- <div id="addProjectModal-focus" class="modal">
                         <div class="modal-content">
                             <span class="close" onclick="closeAddProjectModal()">&times;</span>
                             <div class="title-project">Thêm công trình nước mới</div>
-                            <form id="addProjectForm">
+                            <form id="addProjectForm-focus">
                                 <div class="more-info" for="project_name">
                                     Tên công trình   
                                     <div >
@@ -213,7 +270,7 @@
                             </form>
 
                         </div>
-                    </div>   
+                    </div>    -->
                 </section>
                
                 <section id="livestock" class="content-section">
@@ -223,7 +280,7 @@
                    <section class="search-filter">
                     <input type="text" placeholder="Tìm kiếm hộ chăn nuôi...">
                     <button class="search-btn">Tìm kiếm</button>
-                </section>
+                    </section>
                 <section class="list">
                     <table>
                         <thead>
@@ -282,8 +339,10 @@
                         <table>
                             <thead>
                                 <tr>
+                                    <th>STT</th>
                                     <th>Loại văn bản</th>
                                     <th>Đường dẫn</th>
+                                    <th>Ngày cập nhật</th>
                                 </tr>
                             </thead> 
                             <tbody>
